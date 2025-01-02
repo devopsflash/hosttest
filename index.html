@@ -3,18 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Host Test</title>
+    <title>Display GitHub File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Host Test Repository</h1>
-    <p>This repository is used for testing purposes.</p>
+    <h1>Display GitHub File</h1>
+    <p>Content of the file from GitHub:</p>
+    <pre id="fileContent">Loading...</pre>
 
-    <h2>Trash Folder</h2>
-    <p>
-        You can find the Trash Folder 
-        <a href="https://github.com/devopsflash/hosttest/blob/main/README.md" target="_blank">
-            here
-        </a>.
-    </p>
+    <script>
+        async function fetchGitHubFile() {
+            const rawUrl = 'https://raw.githubusercontent.com/devopsflash/hosttest/main/index.html';
+            try {
+                const response = await fetch(rawUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const text = await response.text();
+                document.getElementById('fileContent').textContent = text;
+            } catch (error) {
+                document.getElementById('fileContent').textContent = `Error fetching file: ${error.message}`;
+            }
+        }
+
+        // Load the file content on page load
+        fetchGitHubFile();
+    </script>
 </body>
 </html>
+
