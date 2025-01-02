@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File List</title>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Available Files</h1>
+  <ul id="file-list"></ul>
+
+  <script>
+    // Predefined list of files
+    const files = [
+      "index.html",
+      "page1.html",
+      "page2.html",
+      "files.html"
+    ];
+
+    const fileList = document.getElementById("file-list");
+    files.forEach(file => {
+      const listItem = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = file;
+      link.textContent = file;
+      listItem.appendChild(link);
+      fileList.appendChild(listItem);
+    });
+  </script>
+  <a href="index.html">Back to Home</a>
+</body>
+</html>
